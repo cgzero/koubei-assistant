@@ -310,6 +310,14 @@ a {
     font-weight: 400;
 }
 
+.kb-content-title a {
+    color: #111;
+}
+
+.kb-content-title a:hover {
+    color: #000;
+}
+
 .kb-content-main {
     font-size: 13px;
     color: #777;
@@ -334,6 +342,14 @@ a {
 .kb-content-more {
     font-size: 13px;
     color: #bbb;
+}
+
+.kb-content-more a {
+    color: #bbb;
+}
+
+.kb-content-more a:hover {
+    color: #fc802b;
 }
 
 /* 评论 */
