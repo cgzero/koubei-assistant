@@ -6,6 +6,8 @@
 - 快速查看当前网站的点评、投诉信息
 - 使用口碑，拒绝受骗！
 
+下载地址：[点此下载](https://chrome.google.com/webstore/detail/elhlhmdgbofohgejabadfgmchigjbllp)
+
 ## 更新历史
 
 - 2.0.1 问题修复 [2016-06-11]
