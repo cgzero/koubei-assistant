@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>百度口碑助手</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="dep/mdl/material.min.css">
+    <link rel="stylesheet" href="src/css/main.css">
+</head>
+
+<body>
+<div id="app">
+    <div v-show="isrender">
+        <div v-show="hasdata" class="kb-container">
+            <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
+                <!-- 头部 -->
+                <header class="kb-header mdl-layout__header mdl-layout__header--waterfall">
+                    <div class="kb-siteinfo">
+                        <h1 class="kb-sitename">
+                            <a target="_blank" href="{{host}}/s/{{siteinfo.website}}?fr=chrome" title="{{siteinfo.sitename}}">{{siteinfo.sitename}}</a>
+                        </h1>
+                        <div class="kb-website">{{siteinfo.website}}</div>
+                        <div class="kb-praise">
+                            <span class="kb-star-wrap">
+                                <i class="kb-star-0"></i>
+                                <i style="width:{{siteinfo.praise}}%;" class="kb-star-5"></i>
+                            </span>
+                            <span v-if="siteinfo.praise" class="kb-praise-text">{{siteinfo.praise}}% <em>好评</em></span>
+                            <span v-else class="kb-praise-nodata-text">暂无评分</span>
+                        </div>
+                    </div>
+                    <div class="kb-tab mdl-layout__tab-bar mdl-js-ripple-effect">
+                        <a href="#fixed-tab-1" class="mdl-layout__tab is-active">网民评论</a>
+                        <a href="#fixed-tab-2" class="mdl-layout__tab" v-on:click="getTruth">实名曝光</a>
+                        <a href="#fixed-tab-3" class="mdl-layout__tab" v-on:click="getTopic">舆情观察</a>
+                    </div>
+                </header>
+                <!-- 内容区域 -->
+                <main class="mdl-layout__content">
+                    <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+                        <div class="page-content">
+                            <div v-if="sitecomt.data.length" class="kb-content-wrap kb-comt-wrap">
+                                <div class="kb-content-card kb-comt-card" v-for="item in sitecomt.data">
+                                    <div class="kb-hasphoto-main">
+                                        <!-- 用户名 & 用户打分 -->
+                                        <div class="kb-user-line">
+                                            <a href="/home/{{item.ppid}}">{{item.username}}:</a>
+                                            <i class="kb-small-star-{{item.rank}}"></i>
+                                        </div>
+                                        <!-- 评论内容 -->
+                                        <a href="{{host}}/c/{{item.comtid}}" target="_blank" class="kb-content-main">
+                                            <pre>{{{item.content}}}</pre>
+                                        </a>
+                                        <!-- 用户上传图片 -->
+                                        <ul v-if="item.pics.length" class="kb-pic-list">
+                                            <li v-for="pic in item.pics">
+                                                <a target="_blank" href="{{host}}/c/{{item.comtid}}"><img v-bind:src="pic.thumb" width="100px" height="100px"></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- 用户头像 -->
+                                    <a href="{{host}}/home/{{item.ppid}}" target="_blank" class="kb-user-photo" title="{{item.username}}">
+                                        <img v-bind:src="userphotoprefix + item.userphoto" width="30" height="30">
+                                    </a>
+                                </div>
+                                <a class="kb-content-card-more" target="_blank" href="{{host}}/s/{{siteinfo.website}}">查看更多评论</a>
+                            </div>
+                            <div v-else class="kb-content-nodata">
+                                <p><i class="kb-nodata-icon"></i></p>
+                                <p>好机会！这里没有评论，快来 <a target="_blank" href="{{host}}/w/{{siteinfo.website}}">抢沙发！</a></p>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+                        <div class="page-content">
+                            <template v-if="istruthrender">
+                                <div v-if="sitetruth.data.length" class="kb-content-wrap kb-truth-wrap">
+                                    <div class="kb-content-card kb-truth-card mdl-card" v-for="item in sitetruth.data">
+                                        <div class="kb-hasphoto-main">
+                                            <!-- 曝光标题 -->
+                                            <h3 class="kb-content-title">{{{item.title}}}</h3>
+                                            <!-- 曝光内容 -->
+                                            <a href="{{host}}/t/{{item.truthid}}" target="_blank" class="kb-content-main">
+                                                <pre>{{{item.content}}}</pre>
+                                            </a>
+                                            <!-- 用户上传图片 -->
+                                            <ul v-if="item.pics.length" class="kb-pic-list">
+                                                <li v-for="pic in item.pics">
+                                                    <a target="_blank" href="{{host}}/t/{{item.truthid}}"><img v-bind:src="pic.thumb" width="100px" height="100px"></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- 用户头像 -->
+                                        <a href="{{host}}/home/{{item.ppid}}" target="_blank" class="kb-user-photo" title="{{item.username}}">
+                                            <img v-bind:src="userphotoprefix + item.userphoto" width="30" height="30">
+                                        </a>
+                                    </div>
+                                    <a class="kb-content-card-more" target="_blank" href="{{host}}/s/{{siteinfo.website}}?tab=truth">查看更多曝光</a>
+                                </div>
+                                <div v-else class="kb-content-nodata">
+                                    <p><i class="kb-nodata-icon"></i></p>
+                                    <p>好机会！这里没有实名曝光，快来 <a target="_blank" href="{{host}}/w/{{siteinfo.website}}?tab=truth">抢沙发！</a></p>
+                                </div>
+                            </template>
+                        </div>
+                    </section>
+                    <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+                        <div class="page-content">
+                            <template v-if="istopicrender">
+                                <div v-if="sitetopic.data.length" class="kb-content-wrap kb-truth-wrap">
+                                    <div class="kb-content-card kb-topic-card mdl-card" v-for="item in sitetopic.data">
+                                        <em class="kb-topic-type-icon">
+                                            <template v-if="item.type == 1" title="正面报导">
+                                                <i class="kb-topic-type-pos"></i>
+                                                <ins>正</ins>
+                                            </template>
+                                            <template v-if="item.type == 2" title="负面报导">
+                                                <i class="kb-topic-type-neg"></i>
+                                                <ins>负</ins>
+                                            </template>
+                                            <template v-if="item.type == 3" title="中立报导">
+                                                <i class="kb-topic-type-neu"></i>
+                                                <ins>中</ins>
+                                            </template>
+                                        </em>
+                                        <!-- 舆情标题 -->
+                                        <h3 class="kb-content-title">{{{item.title}}}</h3>
+                                        <!-- 舆情简介 -->
+                                        <a href="{{host}}/t/{{item.truthid}}" target="_blank" class="kb-content-main">
+                                            <pre>{{{item.introduce}}}</pre>
+                                        </a>
+                                        <!-- 更多信息 -->
+                                        <div class="kb-content-more">{{item.topictime}} {{item.src}}</div>
+                                    </div>
+                                    <a class="kb-content-card-more" target="_blank" href="{{host}}/s/{{siteinfo.website}}?tab=topic">舆情</a>
+                                </div>
+                                <div v-else class="kb-content-nodata">
+                                    <p><i class="kb-nodata-icon"></i></p>
+                                    <p>暂未收录媒体相关报道 <a target="_blank" href="{{host}}/recommendtopic/{{siteinfo.website}}">推荐有礼</a></p>
+                                </div>
+                            </template>
+                        </div>
+                    </section>
+                </main>
+                <!-- 写按钮 -->
+                <a class="kb-w" target="_blank" href="{{host}}/w/{{siteinfo.website}}" title="写评论">
+                    <button class="kb-w-btn mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--3dp">
+                        <i class="material-icons">mode_edit</i>
+                    </button>
+                </a>
+            </div>
+        </div>
+        <!-- 请求出现错误时 -->
+        <div v-show="!hasdata" class="kb-container kb-nodata">
+            <p><i class="kb-nodata-icon"></i></p>
+            <p v-if="status == 1">口碑暂未收录该站点，<a target="_blank" href="{{host}}/sitecollect">点此添加</a></p>
+            <p v-else>{{errmsg}}</p>
+        </div>
+    </div>
+</div>
+<script src="dep/mdl/material.min.js"></script>
+<script src="dep/vue/vue.min.js"></script>
+<script src="dep/vue/vue-resource.min.js"></script>
+<script src="src/main.js"></script>
+</body>
+</html>
