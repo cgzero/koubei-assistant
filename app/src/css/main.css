@@ -80,7 +80,7 @@ a {
 }
 
 .kb-header.is-compact .kb-siteinfo {
-    display: none;
+    height: 0;
 }
 
 .kb-star-wrap {
@@ -146,6 +146,8 @@ a {
 
 .kb-siteinfo {
     padding: 0 10px;
+    transition: height .1s;
+    height: 80px;
 }
 
 .kb-sitename {
@@ -342,6 +344,7 @@ a {
 .kb-content-more {
     font-size: 13px;
     color: #bbb;
+    margin-top: 2px;
 }
 
 .kb-content-more a {
@@ -383,6 +386,10 @@ a {
 }
 
 /* 舆情 */
+.kb-topic-card {
+    padding-bottom: 10px;
+}
+
 .kb-topic-card .kb-content-title {
     width: 95%;
 }

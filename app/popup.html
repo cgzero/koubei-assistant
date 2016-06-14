@@ -124,15 +124,15 @@
                                             </template>
                                         </em>
                                         <!-- 舆情标题 -->
-                                        <h3 class="kb-content-title"><a target="_blank" href="{{item.url}}">{{{item.title}}}</a></h3>
+                                        <h3 class="kb-content-title"><a target="_blank" href="{{host}}/e/{{item.topicid}}">{{{item.title}}}</a></h3>
                                         <!-- 舆情简介 -->
-                                        <a href="{{item.url}}" target="_blank" class="kb-content-main">
+                                        <a href="{{host}}/e/{{item.topicid}}" target="_blank" class="kb-content-main">
                                             <pre>{{{item.introduce}}}</pre>
                                         </a>
                                         <!-- 更多信息 -->
                                         <div class="kb-content-more">{{item.topictime}} <a target="_blank" href="{{item.url}}">{{item.src}}</a></div>
                                     </div>
-                                    <a class="kb-content-card-more" target="_blank" href="{{host}}/s/{{siteinfo.website}}?tab=topic">舆情</a>
+                                    <a class="kb-content-card-more" target="_blank" href="{{host}}/s/{{siteinfo.website}}?tab=topic">查看更多舆情</a>
                                 </div>
                                 <div v-else class="kb-content-nodata">
                                     <p><i class="kb-nodata-icon"></i></p>
