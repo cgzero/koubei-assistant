@@ -17,15 +17,15 @@
                 <header class="kb-header mdl-layout__header mdl-layout__header--waterfall">
                     <div class="kb-siteinfo">
                         <h1 class="kb-sitename">
-                            <a target="_blank" href="{{host}}/s/{{siteinfo.website}}?fr=chrome" title="{{siteinfo.sitename}}">{{siteinfo.sitename}}</a>
+                            <a target="_blank" href="{{host}}/s/{{meminfo.website}}?fr=chrome" title="{{meminfo.sitename}}">{{meminfo.memname}}</a>
                         </h1>
-                        <div class="kb-website">{{siteinfo.website}}</div>
+                        <div class="kb-website">{{meminfo.website}}</div>
                         <div class="kb-praise">
                             <span class="kb-star-wrap">
                                 <i class="kb-star-0"></i>
-                                <i style="width:{{siteinfo.praise}}%;" class="kb-star-5"></i>
+                                <i style="width:{{meminfo.praise}}%;" class="kb-star-5"></i>
                             </span>
-                            <span v-if="siteinfo.praise" class="kb-praise-text">{{siteinfo.praise}}% <em>好评</em></span>
+                            <span v-if="siteinfo.praise" class="kb-praise-text">{{meminfo.praise}}% <em>好评</em></span>
                             <span v-else class="kb-praise-nodata-text">暂无评分</span>
                         </div>
                     </div>
@@ -39,8 +39,8 @@
                 <main class="mdl-layout__content">
                     <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
                         <div class="page-content">
-                            <div v-if="sitecomt.data.length" class="kb-content-wrap kb-comt-wrap">
-                                <div class="kb-content-card kb-comt-card" v-for="item in sitecomt.data">
+                            <div v-if="memcomt.data.length" class="kb-content-wrap kb-comt-wrap">
+                                <div class="kb-content-card kb-comt-card" v-for="item in memcomt.data">
                                     <div class="kb-hasphoto-main">
                                         <!-- 用户名 & 用户打分 -->
                                         <div class="kb-user-line">
@@ -63,19 +63,19 @@
                                         <img v-bind:src="userphotoprefix + item.userphoto" width="30" height="30">
                                     </a>
                                 </div>
-                                <a class="kb-content-card-more" target="_blank" href="{{host}}/s/{{siteinfo.website}}">查看更多评论</a>
+                                <a class="kb-content-card-more" target="_blank" href="{{host}}/s/{{meminfo.website}}">查看更多评论</a>
                             </div>
                             <div v-else class="kb-content-nodata">
                                 <p><i class="kb-nodata-icon"></i></p>
-                                <p>好机会！这里没有评论，快来 <a target="_blank" href="{{host}}/w/{{siteinfo.website}}">抢沙发！</a></p>
+                                <p>好机会！这里没有评论，快来 <a target="_blank" href="{{host}}/w/{{meminfo.website}}">抢沙发！</a></p>
                             </div>
                         </div>
                     </section>
                     <section class="mdl-layout__tab-panel" id="fixed-tab-2">
                         <div class="page-content">
                             <template v-if="istruthrender">
-                                <div v-if="sitetruth.data.length" class="kb-content-wrap kb-truth-wrap">
-                                    <div class="kb-content-card kb-truth-card mdl-card" v-for="item in sitetruth.data">
+                                <div v-if="memtruth.data.length" class="kb-content-wrap kb-truth-wrap">
+                                    <div class="kb-content-card kb-truth-card mdl-card" v-for="item in memtruth.data">
                                         <div class="kb-hasphoto-main">
                                             <!-- 曝光标题 -->
                                             <h3 class="kb-content-title"><a target="_blank" href="{{host}}/t/{{item.truthid}}">{{{item.title}}}</a></h3>
@@ -95,11 +95,11 @@
                                             <img v-bind:src="userphotoprefix + item.userphoto" width="30" height="30">
                                         </a>
                                     </div>
-                                    <a class="kb-content-card-more" target="_blank" href="{{host}}/s/{{siteinfo.website}}?tab=truth">查看更多曝光</a>
+                                    <a class="kb-content-card-more" target="_blank" href="{{host}}/s/{{meminfo.website}}?tab=truth">查看更多曝光</a>
                                 </div>
                                 <div v-else class="kb-content-nodata">
                                     <p><i class="kb-nodata-icon"></i></p>
-                                    <p>好机会！这里没有实名曝光，快来 <a target="_blank" href="{{host}}/w/{{siteinfo.website}}?tab=truth">抢沙发！</a></p>
+                                    <p>好机会！这里没有实名曝光，快来 <a target="_blank" href="{{host}}/w/{{meminfo.website}}?tab=truth">抢沙发！</a></p>
                                 </div>
                             </template>
                         </div>
@@ -107,8 +107,8 @@
                     <section class="mdl-layout__tab-panel" id="fixed-tab-3">
                         <div class="page-content">
                             <template v-if="istopicrender">
-                                <div v-if="sitetopic.data.length" class="kb-content-wrap kb-truth-wrap">
-                                    <div class="kb-content-card kb-topic-card mdl-card" v-for="item in sitetopic.data">
+                                <div v-if="memtopic.data.length" class="kb-content-wrap kb-truth-wrap">
+                                    <div class="kb-content-card kb-topic-card mdl-card" v-for="item in memtopic.data">
                                         <em class="kb-topic-type-icon">
                                             <template v-if="item.type == 1" title="正面报导">
                                                 <i class="kb-topic-type-pos"></i>
@@ -132,18 +132,18 @@
                                         <!-- 更多信息 -->
                                         <div class="kb-content-more">{{item.topictime}} <a target="_blank" href="{{item.url}}">{{item.src}}</a></div>
                                     </div>
-                                    <a class="kb-content-card-more" target="_blank" href="{{host}}/s/{{siteinfo.website}}?tab=topic">查看更多舆情</a>
+                                    <a class="kb-content-card-more" target="_blank" href="{{host}}/s/{{meminfo.website}}?tab=topic">查看更多舆情</a>
                                 </div>
                                 <div v-else class="kb-content-nodata">
                                     <p><i class="kb-nodata-icon"></i></p>
-                                    <p>暂未收录媒体相关报道 <a target="_blank" href="{{host}}/recommendtopic/{{siteinfo.website}}">推荐有礼</a></p>
+                                    <p>暂未收录媒体相关报道 <a target="_blank" href="{{host}}/recommendtopic/{{meminfo.website}}">推荐有礼</a></p>
                                 </div>
                             </template>
                         </div>
                     </section>
                 </main>
                 <!-- 写按钮 -->
-                <a class="kb-w" target="_blank" href="{{host}}/w/{{siteinfo.website}}" title="写评论">
+                <a class="kb-w" target="_blank" href="{{host}}/w/{{meminfo.website}}" title="写评论">
                     <button class="kb-w-btn mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--3dp">
                         <i class="material-icons">mode_edit</i>
                     </button>

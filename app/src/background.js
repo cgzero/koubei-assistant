@@ -4,6 +4,8 @@
  * @date 2016-06-11
  */
 
+/* globals chrome */
+
 (function () {
     /**
      * 默认 请求域名
@@ -19,7 +21,7 @@
      * @const
      * @type {string}
      */
-    var URL_GET_DATA = DEFAULT_HOST + '/m/getsiteinfoajax';
+    var URL_GET_DATA = DEFAULT_HOST + '/s/getmemdataajax';
 
     /**
      * 简单的url验证的正则
@@ -45,6 +47,10 @@
                 if (!exists) {
                     details.requestHeaders.push({name: 'Referer', value: DEFAULT_HOST});
                 }
+
+                // 口碑部分请求会判断是否为ajax请求
+                // 所以需要增加该header信息
+                details.requestHeaders.push({name: 'X-Requested-With', value: 'XMLHttpRequest'});
 
                 return {requestHeaders: details.requestHeaders};
             }
@@ -94,15 +100,20 @@
     function getData(url) {
         $.ajax({
             url: URL_GET_DATA,
-            data: {domain: url},
+            data: {
+                ctype: 1,
+                sort: 7,
+                domain: url
+            },
             dataType: 'json',
             cache: false
         })
         .then(
             function (obj) {
                 if (!obj.status) {
-                    if (obj.data && parseInt(obj.data.praise, 10)) {
-                        setText(obj.data.praise + '%');
+                    var praise = parseInt(obj.data.meminfo.praise, 10);
+                    if (obj.data && praise) {
+                        setText(praise + '%');
                     }
                 }
                 else {

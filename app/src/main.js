@@ -21,7 +21,7 @@
      * @const
      * @type {string}
      */
-    var URL_GET_SITE_DATA = DEFAULT_HOST + '/m/getsitedataajax';
+    var URL_GET_SITE_DATA = DEFAULT_HOST + '/s/getmemdataajax';
 
     /**
      * 获取网站评论信息
@@ -29,7 +29,7 @@
      * @const
      * @type {string}
      */
-    var URL_GET_SITE_COMT = DEFAULT_HOST + '/m/getsitecomtajax';
+    var URL_GET_SITE_COMT = DEFAULT_HOST + '/s/getmemcomtajax';
 
     /**
      * 头像前缀
@@ -64,6 +64,10 @@
                     details.requestHeaders.push({name: 'Referer', value: DEFAULT_HOST});
                 }
 
+                // 口碑部分请求会判断是否为ajax请求
+                // 所以需要增加该header信息
+                details.requestHeaders.push({name: 'X-Requested-With', value: 'XMLHttpRequest'});
+
                 return {requestHeaders: details.requestHeaders};
             }
         },
@@ -79,7 +83,7 @@
                 getSiteData(url);
             }
             else {
-                getSiteData('baidu.com');
+                getSiteData('23c0cfd854aa9c9c47dfbdbee2f0500b');
             }
         }
     });
@@ -91,7 +95,7 @@
      * @param {string} url 当前地址栏url
      */
     function getSiteData(url) {
-        var siteid;
+        var memid;
         new Vue({
             el: '#app',
             ready: function () {
@@ -125,8 +129,8 @@
 
                         if (!status) {
                             this.$set('hasdata', 1);
-                            this.$set('siteinfo', data.siteinfo);
-                            this.$set('sitecomt', data.sitecomt);
+                            this.$set('meminfo', data.meminfo);
+                            this.$set('memcomt', data.memcomt);
                         }
                         else {
                             this.$set('hasdata', 0);
@@ -134,7 +138,7 @@
                             this.$set('errmsg', ret.msg);
                         }
 
-                        siteid = data.siteinfo.siteid;
+                        memid = data.meminfo.memid;
                     },
                     function (res) {
                         this.$set('isrender', 1);
@@ -155,7 +159,7 @@
                         method: 'GET',
                         data: {
                             ctype: 2,
-                            siteid: siteid
+                            memid: memid
                         }
                     })
                     .then(
@@ -167,7 +171,7 @@
                             this.$set('istruthrender', 1);
 
                             if (!status) {
-                                this.$set('sitetruth', data);
+                                this.$set('memtruth', data);
                             }
                         }
                     );
@@ -182,7 +186,7 @@
                         method: 'GET',
                         data: {
                             ctype: 4,
-                            siteid: siteid
+                            memid: memid
                         }
                     })
                     .then(
@@ -194,7 +198,7 @@
                             this.$set('istopicrender', 1);
 
                             if (!status) {
-                                this.$set('sitetopic', data);
+                                this.$set('memtopic', data);
                             }
                         }
                     );
