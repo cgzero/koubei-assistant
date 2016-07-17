@@ -83,7 +83,8 @@
                 getSiteData(url);
             }
             else {
-                getSiteData('23c0cfd854aa9c9c47dfbdbee2f0500b');
+                // 传空则展示错误页面
+                getSiteData();
             }
         }
     });
