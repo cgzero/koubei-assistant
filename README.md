@@ -1,14 +1,8 @@
 # 百度口碑助手
 
+百度口碑助手是一款提供站点好评率和评价信息的插件，使用口碑助手，拒绝受骗！[点此下载](https://chrome.google.com/webstore/detail/elhlhmdgbofohgejabadfgmchigjbllp)
+
 ![](https://raw.githubusercontent.com/cgzero/koubei-assistant/master/tmp/screen-shot1.jpg)
-
-## 简介
-
-- 一看便知当前网站好评率
-- 快速查看当前网站的点评、投诉信息
-- 使用口碑，拒绝受骗！
-
-下载地址：[点此下载](https://chrome.google.com/webstore/detail/elhlhmdgbofohgejabadfgmchigjbllp)
 
 ## 更新历史
 
