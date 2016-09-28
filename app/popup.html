@@ -31,8 +31,8 @@
                     </div>
                     <div class="kb-tab mdl-layout__tab-bar mdl-js-ripple-effect">
                         <a href="#fixed-tab-1" class="mdl-layout__tab is-active">网民评论</a>
-                        <a href="#fixed-tab-2" class="mdl-layout__tab" v-on:click="getTruth">实名曝光</a>
-                        <a href="#fixed-tab-3" class="mdl-layout__tab" v-on:click="getTopic">舆情观察</a>
+                        <a href="#fixed-tab-2" class="mdl-layout__tab" v-on:click="getTruth">消费者曝光</a>
+                        <a href="#fixed-tab-3" class="mdl-layout__tab" v-on:click="getTopic">媒体观察</a>
                     </div>
                 </header>
                 <!-- 内容区域 -->
@@ -99,7 +99,7 @@
                                 </div>
                                 <div v-else class="kb-content-nodata">
                                     <p><i class="kb-nodata-icon"></i></p>
-                                    <p>好机会！这里没有实名曝光，快来 <a target="_blank" href="{{host}}/w/{{meminfo.website}}?tab=truth">抢沙发！</a></p>
+                                    <p>好机会！这里没有消费者曝光，快来 <a target="_blank" href="{{host}}/w/{{meminfo.website}}?tab=truth">抢沙发！</a></p>
                                 </div>
                             </template>
                         </div>
@@ -123,16 +123,16 @@
                                                 <ins>中</ins>
                                             </template>
                                         </em>
-                                        <!-- 舆情标题 -->
+                                        <!-- 媒体观察标题 -->
                                         <h3 class="kb-content-title"><a target="_blank" href="{{host}}/e/{{item.topicid}}">{{{item.title}}}</a></h3>
-                                        <!-- 舆情简介 -->
+                                        <!-- 媒体观察简介 -->
                                         <a href="{{host}}/e/{{item.topicid}}" target="_blank" class="kb-content-main">
                                             <pre>{{{item.introduce}}}</pre>
                                         </a>
                                         <!-- 更多信息 -->
                                         <div class="kb-content-more">{{item.topictime}} <a target="_blank" href="{{item.url}}">{{item.src}}</a></div>
                                     </div>
-                                    <a class="kb-content-card-more" target="_blank" href="{{host}}/s/{{meminfo.website}}?tab=topic">查看更多舆情</a>
+                                    <a class="kb-content-card-more" target="_blank" href="{{host}}/s/{{meminfo.website}}?tab=topic">查看更多媒体观察</a>
                                 </div>
                                 <div v-else class="kb-content-nodata">
                                     <p><i class="kb-nodata-icon"></i></p>
