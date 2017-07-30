@@ -13,7 +13,7 @@
      * @const
      * @type {string}
      */
-    var DEFAULT_HOST = 'http://koubei.baidu.com';
+    var DEFAULT_HOST = 'https://koubei.baidu.com';
 
     /**
      * 获取网站基本信息和评论信息
@@ -37,7 +37,7 @@
      * @const
      * @type {string}
      */
-    var PHOTO_PREFIX = 'http://himg.bdimg.com/sys/portrait/item/';
+    var PHOTO_PREFIX = 'https://himg.bdimg.com/sys/portrait/item/';
 
     /**
      * 简单的url验证的正则

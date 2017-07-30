@@ -54,7 +54,7 @@
                                         <!-- 用户上传图片 -->
                                         <ul v-if="item.pics.length" class="kb-pic-list">
                                             <li v-for="pic in item.pics">
-                                                <a target="_blank" href="{{host}}/c/{{item.comtid}}"><img v-bind:src="pic.thumb" width="100px" height="100px"></a>
+                                                <a target="_blank" href="{{host}}/c/{{item.comtid}}"><img v-bind:style="{backgroundImage: 'url(http:' + pic.thumb + ')'}" width="100px" height="100px"></a>
                                             </li>
                                         </ul>
                                     </div>
@@ -86,7 +86,7 @@
                                             <!-- 用户上传图片 -->
                                             <ul v-if="item.pics.length" class="kb-pic-list">
                                                 <li v-for="pic in item.pics">
-                                                    <a target="_blank" href="{{host}}/t/{{item.truthid}}"><img v-bind:src="pic.thumb" width="100px" height="100px"></a>
+                                                    <a target="_blank" href="{{host}}/t/{{item.truthid}}"><img v-bind:style="{backgroundImage: 'url(http:' + pic.thumb + ')'}" width="100px" height="100px"></a>
                                                 </li>
                                             </ul>
                                         </div>

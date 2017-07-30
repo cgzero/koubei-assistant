@@ -13,7 +13,7 @@
      * @const
      * @type {string}
      */
-    var DEFAULT_HOST = 'http://koubei.baidu.com';
+    var DEFAULT_HOST = 'https://koubei.baidu.com';
 
     /**
      * 请求地址
